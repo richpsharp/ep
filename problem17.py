@@ -41,14 +41,15 @@ def number_to_word(n):
     """Convert number to word."""
     word = ''
     if n == 100:
-        return 'hundred'
+        return 'onehundred'
     if n == 1000:
-        return 'thousand'
+        return 'onethousand'
     if n > 100:
         word += NUMBERS_TO_WORDS[int(str(n)[0])] + 'hundred'
         n = n % 100
         if n == 0:
             return word
+        word += 'and'
     if n in NUMBERS_TO_WORDS:
         return word + NUMBERS_TO_WORDS[n]
     if n < 100:
@@ -62,5 +63,9 @@ def number_to_word(n):
 
 
 if __name__ == '__main__':
-    for i in range(1, 300):
-        print(number_to_word(i))
+    letter_count = 0
+    for i in range(1, 1001):
+        word = number_to_word(i)
+        print(i, word)
+        letter_count += len(word)
+    print(letter_count)
